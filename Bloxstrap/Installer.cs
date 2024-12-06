@@ -549,6 +549,7 @@ namespace Bloxstrap
                     App.FastFlags.SetValue("FFlagFixGraphicsQuality", null);
                 }
 
+<<<<<<< HEAD
                 if (Utilities.CompareVersions(existingVer, "2.8.1") == VersionComparison.LessThan)
                 {
                     // wipe all escape menu flag presets
@@ -575,6 +576,8 @@ namespace Bloxstrap
                     }
                 }
 
+=======
+>>>>>>> parent of 21396fb (Temporarily disable escape menu version preset)
                 App.Settings.Save();
                 App.FastFlags.Save();
             }
