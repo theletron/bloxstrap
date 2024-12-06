@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using Microsoft.Win32;
 
 namespace Bloxstrap
@@ -554,13 +554,7 @@ namespace Bloxstrap
                 {
                     // wipe all escape menu flag presets
                     App.FastFlags.SetValue("FIntNewInGameMenuPercentRollout3", null);
-                    App.FastFlags.SetValue("FFlagEnableInGameMenuControls", null);
-                    App.FastFlags.SetValue("FFlagEnableInGameMenuModernization", null);
                     App.FastFlags.SetValue("FFlagEnableInGameMenuChrome", null);
-                    App.FastFlags.SetValue("FFlagFixReportButtonCutOff", null);
-                    App.FastFlags.SetValue("FFlagEnableMenuControlsABTest", null);
-                    App.FastFlags.SetValue("FFlagEnableV3MenuABTest3", null);
-                    App.FastFlags.SetValue("FFlagEnableInGameMenuChromeABTest3", null);
                     App.FastFlags.SetValue("FFlagEnableInGameMenuChromeABTest4", null);
                 }
 
