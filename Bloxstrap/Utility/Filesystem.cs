@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,31 @@ namespace Bloxstrap.Utility
     {
         internal static long GetFreeDiskSpace(string path)
         {
-            foreach (var drive in DriveInfo.GetDrives())
+            try
             {
-                // https://github.com/bloxstraplabs/bloxstrap/issues/1648#issuecomment-2192571030
-                if (path.ToUpperInvariant().StartsWith(drive.Name))
-                    return drive.AvailableFreeSpace;
+                var isUri = Uri.TryCreate(path, UriKind.RelativeOrAbsolute, out var u);
+                if (!Path.IsPathRooted(path) || !Path.IsPathFullyQualified(path) || (isUri && (u?.IsUnc ?? false)))
+                {
+                    return -1;
+                }
+                var drive = new DriveInfo(path);
+                return drive.AvailableFreeSpace;
             }
-
-            return -1;
+            catch (ArgumentException e)
+            {
+                App.Logger.WriteLine("Filesystem::BadPath", $"The path: {path} does not contain a valid drive info.");
+                return -1;
+            }
+            catch (IOException e)
+            {
+                App.Logger.WriteLine("Filesystem::IOException", $"An I/O error occurred while accessing the path: {path}. Exception: {e.Message}");
+                return -1;
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                App.Logger.WriteLine("Filesystem::UnauthorizedAccess", $"Access to the path: {path} is denied. Exception: {e.Message}");
+                return -1;
+            }
         }
 
         internal static void AssertReadOnly(string filePath)
