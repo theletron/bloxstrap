@@ -549,15 +549,6 @@ namespace Bloxstrap
                     App.FastFlags.SetValue("FFlagFixGraphicsQuality", null);
                 }
 
-<<<<<<< HEAD
-                if (Utilities.CompareVersions(existingVer, "2.8.1") == VersionComparison.LessThan)
-                {
-                    // wipe all escape menu flag presets
-                    App.FastFlags.SetValue("FIntNewInGameMenuPercentRollout3", null);
-                    App.FastFlags.SetValue("FFlagEnableInGameMenuChrome", null);
-                    App.FastFlags.SetValue("FFlagEnableInGameMenuChromeABTest4", null);
-                }
-
                 if (Utilities.CompareVersions(existingVer, "2.8.2") == VersionComparison.LessThan)
                 {
                     try
@@ -569,9 +560,6 @@ namespace Bloxstrap
                         App.Logger.WriteException(LOG_IDENT, ex);
                     }
                 }
-
-=======
->>>>>>> parent of 21396fb (Temporarily disable escape menu version preset)
                 App.Settings.Save();
                 App.FastFlags.Save();
             }
