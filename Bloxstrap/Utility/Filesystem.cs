@@ -22,7 +22,7 @@ namespace Bloxstrap.Utility
                 var drive = new DriveInfo(path);
                 return drive.AvailableFreeSpace;
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 App.Logger.WriteLine("Filesystem::BadPath", $"The path: {path} does not contain a valid drive info.");
                 return -1;
